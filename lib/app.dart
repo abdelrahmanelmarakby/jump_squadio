@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:jump_squadio/core/services/dynamic_theme.dart';
 import 'app/routes/app_pages.dart';
 import 'app/views/network_error.dart';
 import 'core/values/localization/messages.dart';
@@ -49,7 +50,10 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Nourish.SA',
+      title: 'Jump Squadio',
+      theme: Themes.light,
+      darkTheme: Themes.dark,
+      themeMode: ThemeService().theme,
       debugShowCheckedModeBanner: false,
       navigatorObservers: [BotToastNavigatorObserver()],
       initialRoute: AppPages.INITIAL,

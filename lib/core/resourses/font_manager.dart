@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class FontConstants {
-  static const String fontName = 'Tajawal';
+  static const String fontName = 'Roboto';
 }
 
 class FontWeights {
