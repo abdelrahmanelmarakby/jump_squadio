@@ -15,6 +15,7 @@ import 'package:jump_squadio/core/resourses/font_styles_manager.dart';
 import 'package:jump_squadio/core/resourses/size_manager.dart';
 import 'package:jump_squadio/core/values/assets.dart';
 
+import '../../../comment/views/comment_view.dart';
 import '../../controllers/home_controller.dart';
 
 class Story extends GetWidget<HomeController> {
@@ -57,30 +58,18 @@ class Story extends GetWidget<HomeController> {
                   ),
                   itemCount: snapshot.data?.length ?? 0,
                   itemBuilder: (context, index) {
-                    return InkWell(
-                      onTap: () {
-                        if ((comments?[index].kids?.length ?? 0) > 0) {
-                          Get.toNamed(Routes.COMMENT,
-                              arguments: comments?[index]);
-                        } else {
-                          BotToast.showText(text: "No replies in this comment");
-                        }
-                      },
-                      child: ListTile(
-                        title: HtmlWidget(
-                          comments?[index].text ?? "N/A",
-                        ),
-                        subtitle: Text("By:  ${comments?[index].by}",
-                            style: getMediumTextStyle(
-                              color: ColorsManger.primary,
-                            )),
-                        leading: Column(
-                          children: [
-                            SvgPicture.asset(Assets.kChat),
-                            Text(
-                                (comments?[index].kids?.length ?? 0).toString())
-                          ],
-                        ),
+                    return ListTile(
+                      title: HtmlWidget(
+                        comments?[index].text ?? "N/A",
+                      ),
+                      subtitle: comments![index].kids?.isNotEmpty ?? false
+                          ? CommentView(comments[index])
+                          : SizedBox(),
+                      leading: Column(
+                        children: [
+                          SvgPicture.asset(Assets.kChat),
+                          Text((comments?[index].kids?.length ?? 0).toString())
+                        ],
                       ),
                     );
                   },

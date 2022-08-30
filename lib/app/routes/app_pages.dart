@@ -18,10 +18,5 @@ class AppPages {
       page: () => const HomeView(),
       binding: HomeBinding(),
     ),
-    GetPage(
-      name: _Paths.COMMENT,
-      page: () => const CommentView(),
-      binding: CommentBinding(),
-    ),
   ];
 }
