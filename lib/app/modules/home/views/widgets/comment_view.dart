@@ -6,12 +6,12 @@ import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:get/get.dart';
 import 'package:jump_squadio/app/modules/home/controllers/home_controller.dart';
 
-import '../../../../core/resourses/color_manager.dart';
-import '../../../../core/resourses/font_manager.dart';
-import '../../../../core/resourses/font_styles_manager.dart';
-import '../../../../core/resourses/size_manager.dart';
-import '../../../data/models/comment_model.dart';
-import '../../../data/remote_data_sources/HomeApis.dart';
+import '../../../../../core/resourses/color_manager.dart';
+import '../../../../../core/resourses/font_manager.dart';
+import '../../../../../core/resourses/font_styles_manager.dart';
+import '../../../../../core/resourses/size_manager.dart';
+import '../../../../data/models/comment_model.dart';
+import '../../../../data/remote_data_sources/HomeApis.dart';
 
 class CommentView extends GetWidget<HomeController> {
   const CommentView(this.comment, {Key? key}) : super(key: key);

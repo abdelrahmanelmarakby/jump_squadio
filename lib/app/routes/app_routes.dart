@@ -4,7 +4,6 @@ part of 'app_pages.dart';
 abstract class Routes {
   Routes._();
   static const HOME = _Paths.HOME;
-  static const COMMENT = _Paths.COMMENT;
 }
 
 abstract class _Paths {

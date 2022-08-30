@@ -15,7 +15,7 @@ import 'package:jump_squadio/core/resourses/font_styles_manager.dart';
 import 'package:jump_squadio/core/resourses/size_manager.dart';
 import 'package:jump_squadio/core/values/assets.dart';
 
-import '../../../comment/views/comment_view.dart';
+import 'comment_view.dart';
 import '../../controllers/home_controller.dart';
 
 class Story extends GetWidget<HomeController> {
@@ -68,7 +68,7 @@ class Story extends GetWidget<HomeController> {
                       leading: Column(
                         children: [
                           SvgPicture.asset(Assets.kChat),
-                          Text((comments?[index].kids?.length ?? 0).toString())
+                          Text((comments[index].kids?.length ?? 0).toString())
                         ],
                       ),
                     );

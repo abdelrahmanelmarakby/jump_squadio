@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 
-import '../modules/comment/bindings/comment_binding.dart';
-import '../modules/comment/views/comment_view.dart';
+import '../modules/home/views/widgets/comment_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 
