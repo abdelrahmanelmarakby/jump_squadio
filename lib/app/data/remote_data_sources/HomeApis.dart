@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide Response;
+import 'package:jump_squadio/app/data/models/comment_model.dart';
 import 'package:jump_squadio/app/modules/home/controllers/home_controller.dart';
 import 'package:jump_squadio/core/values/app_constants.dart';
 
@@ -101,7 +102,7 @@ class HomeApis {
     topNews.addAll(response.data.cast<int>());
     List<HackerNewsItem> items = [];
     Get.log('topNews: ${topNews.length}');
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; topNews.length < 5 ? i < topNews.length : i < 5; i++) {
       final request = NetworkRequest(
         type: NetworkRequestType.GET,
         path: 'item/${topNews[i]}.json',
@@ -125,5 +126,31 @@ class HomeApis {
           orElse: () {});
     }
     return items;
+  }
+
+  Future<List<Comment>> getComments({required List<int> comments}) async {
+    List<Comment> commentsList = [];
+    for (int i = 0; comments.length < 5 ? i < comments.length : i < 5; i++) {
+      final request = NetworkRequest(
+        type: NetworkRequestType.GET,
+        path: 'item/${comments[i]}.json',
+        data: const NetworkRequestBody.json(
+          {},
+        ),
+      );
+      // Execute a request and convert response to your model:
+      final response = await networkService.execute(
+        request,
+        Comment.fromJson, // <- Function to convert API response to your model
+      );
+      response.maybeWhen(
+          ok: (authResponse) {
+            Comment item = authResponse;
+            Get.log('item: $item');
+            commentsList.add(item);
+          },
+          orElse: () {});
+    }
+    return commentsList;
   }
 }

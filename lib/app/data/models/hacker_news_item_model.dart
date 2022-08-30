@@ -21,28 +21,28 @@ class HackerNewsItem {
       this.url});
 
   HackerNewsItem.fromJson(Map<String, dynamic> json) {
-    this.by = json["by"];
-    this.descendants = json["descendants"];
-    this.id = json["id"];
-    this.kids = json["kids"] == null ? null : List<int>.from(json["kids"]);
-    this.score = json["score"];
-    this.time = json["time"];
-    this.title = json["title"];
-    this.type = json["type"];
-    this.url = json["url"];
+    by = json["by"];
+    descendants = json["descendants"];
+    id = json["id"];
+    kids = json["kids"] == null ? null : List<int>.from(json["kids"]);
+    score = json["score"];
+    time = json["time"];
+    title = json["title"];
+    type = json["type"];
+    url = json["url"];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data["by"] = this.by;
-    data["descendants"] = this.descendants;
-    data["id"] = this.id;
-    if (this.kids != null) data["kids"] = this.kids;
-    data["score"] = this.score;
-    data["time"] = this.time;
-    data["title"] = this.title;
-    data["type"] = this.type;
-    data["url"] = this.url;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["by"] = by;
+    data["descendants"] = descendants;
+    data["id"] = id;
+    if (kids != null) data["kids"] = kids;
+    data["score"] = score;
+    data["time"] = time;
+    data["title"] = title;
+    data["type"] = type;
+    data["url"] = url;
     return data;
   }
 }

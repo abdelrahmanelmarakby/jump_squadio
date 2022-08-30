@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jump_squadio/core/resourses/color_manager.dart';
 
 class TabPair {
   final Tab tab;
@@ -53,7 +54,7 @@ class _TabBarAndTabViewsState extends State<TabBarAndTabViews>
                     borderRadius: BorderRadius.circular(
                       25.0,
                     ),
-                    color: Color(0xFFFF8527),
+                    color: ColorsManger.primary,
                   ),
                   labelColor: Colors.white,
                   unselectedLabelColor: Colors.black,
