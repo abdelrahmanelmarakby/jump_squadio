@@ -59,43 +59,7 @@ class CommentView extends GetView<CommentController> {
                       const Text(""),
                     ],
                   ),
-                  Expanded(
-                    child: ListView.separated(
-                      separatorBuilder: (context, index) => const Divider(
-                        color: ColorsManger.primary,
-                      ),
-                      itemCount: snapshot.data?.length ?? 0,
-                      itemBuilder: (context, index) {
-                        return InkWell(
-                          onTap: () {
-                            if ((comments?[index].kids?.length ?? 0) > 0) {
-                              Get.offAndToNamed(Routes.COMMENT,
-                                  arguments: comments?[index]);
-                            } else {
-                              BotToast.showText(
-                                  text: "No replies in this comment");
-                            }
-                          },
-                          child: ListTile(
-                            title: HtmlWidget(
-                              comments?[index].text ?? "N/A",
-                            ),
-                            subtitle: Text("By:  ${comments?[index].by}",
-                                style: getMediumTextStyle(
-                                  color: ColorsManger.primary,
-                                )),
-                            leading: Column(
-                              children: [
-                                SvgPicture.asset(Assets.kChat),
-                                Text((comments?[index].kids?.length ?? 0)
-                                    .toString())
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
+                  CommentList(comments: comments),
                 ],
               );
             } else if (snapshot.hasError) {
@@ -105,5 +69,46 @@ class CommentView extends GetView<CommentController> {
             }
           },
         ));
+  }
+}
+
+class CommentList extends StatelessWidget {
+  const CommentList({
+    Key? key,
+    required this.comments,
+  }) : super(key: key);
+
+  final List<Comment>? comments;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: ListView.separated(
+        separatorBuilder: (context, index) => const Divider(
+          color: ColorsManger.primary,
+        ),
+        itemCount: comments?.length ?? 0,
+        itemBuilder: (context, index) {
+          return InkWell(
+            onTap: () {
+              if ((comments?[index].kids?.length ?? 0) > 0) {
+                Get.offAndToNamed(Routes.COMMENT, arguments: comments?[index]);
+              } else {
+                BotToast.showText(text: "No replies in this comment");
+              }
+            },
+            child: CommentWidget(),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class CommentWidget extends StatelessWidget {
+  const CommentWidget({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }
