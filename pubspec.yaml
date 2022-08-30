@@ -10,6 +10,18 @@ dependencies:
   get: 4.6.5
   flutter: 
     sdk: flutter
+  dio: ^4.0.6
+  logger: ^1.1.0
+  shared_preferences: ^2.0.15
+  restart_app: ^1.1.0+1
+  freezed_annotation: ^2.1.0
+  connectivity_plus: ^2.3.6+1
+  bot_toast: ^4.0.3
+  flutter_localizations:
+    sdk: flutter
+  internet_connection_checker: ^0.0.1+4
+  flutter_svg: ^1.1.4
+  get_storage: ^2.0.3
 
 dev_dependencies: 
   flutter_lints: 2.0.1
