@@ -11,5 +11,5 @@ NetworkService networkService = NetworkService(
 
 class AppConstants {
   const AppConstants._();
-  static const String kBaseUrl = "https://api.eat-nourish.com/api/";
+  static const String kBaseUrl = "https://hacker-news.firebaseio.com/v0/";
 }

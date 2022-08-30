@@ -1,7 +1,6 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -9,6 +8,7 @@ import 'package:jump_squadio/core/services/dynamic_theme.dart';
 import 'app/routes/app_pages.dart';
 import 'app/views/network_error.dart';
 import 'core/values/localization/messages.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -67,6 +67,15 @@ class _MyAppState extends State<MyApp> {
         child = MediaQuery(
           data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
           child: botToastBuilder(context, child),
+        );
+        ResponsiveWrapper.builder(
+          ClampingScrollWrapper.builder(context, widget),
+          breakpoints: const [
+            ResponsiveBreakpoint.resize(350, name: MOBILE),
+            ResponsiveBreakpoint.autoScale(600, name: TABLET),
+            ResponsiveBreakpoint.resize(800, name: DESKTOP),
+            ResponsiveBreakpoint.autoScale(1700, name: 'XL'),
+          ],
         );
         return child;
       },

@@ -1,23 +1,19 @@
 import 'package:get/get.dart';
+import 'package:jump_squadio/app/data/models/hacker_news_item_model.dart';
+import 'package:jump_squadio/app/data/remote_data_sources/HomeApis.dart';
 
 class HomeController extends GetxController {
-  //TODO: Implement HomeController
+  late Future<List<HackerNewsItem>?> topStoriesIdsFuture;
+  late Future<List<HackerNewsItem>?> newStoriesIdsFuture;
+  late Future<List<HackerNewsItem>?> bestStoriesIdsFuture;
+  List<HackerNewsItem> topStories = <HackerNewsItem>[];
 
-  final count = 0.obs;
   @override
   void onInit() {
+    topStoriesIdsFuture = HomeApis().getTopNews();
+    newStoriesIdsFuture = HomeApis().getNewNews();
+    bestStoriesIdsFuture = HomeApis().getBestNews();
+
     super.onInit();
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }

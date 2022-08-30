@@ -7,6 +7,7 @@ import 'package:jump_squadio/core/services/shared_pref.dart';
 import 'app.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await SharedPrefService.init();
   Get.put(LocalizationService());
   Get.put(SharedPrefService());
