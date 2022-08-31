@@ -2,38 +2,40 @@ name: jump_squadio
 version: 1.0.0+1
 publish_to: none
 description: A new Flutter project.
-environment: 
+environment:
   sdk: '>=2.17.6 <3.0.0'
 
-dependencies: 
-  cupertino_icons: ^1.0.2
-  get: 4.6.5
-  flutter: 
-    sdk: flutter
-  dio: ^4.0.6
-  logger: ^1.1.0
-  shared_preferences: ^2.0.15
-  restart_app: ^1.1.0+1
-  freezed_annotation: ^2.1.0
-  connectivity_plus: ^2.3.6+1
+dependencies:
   bot_toast: ^4.0.3
+  confetti: ^0.7.0
+  connectivity_plus: ^2.3.6+1
+  cupertino_icons: ^1.0.2
+  dio: ^4.0.6
+  flutter:
+    sdk: flutter
   flutter_localizations:
     sdk: flutter
-  internet_connection_checker: ^0.0.1+4
   flutter_svg: ^1.1.4
-  get_storage: ^2.0.3
-  responsive_framework: ^0.2.0
   flutter_widget_from_html: ^0.8.5
+  freezed_annotation: ^2.1.0
+  get: 4.6.5
+  get_storage: ^2.0.3
+  internet_connection_checker: ^0.0.1+4
+  logger: ^1.1.0
+  responsive_framework: ^0.2.0
+  restart_app: ^1.1.0+1
+  scratcher: ^2.2.1
+  shared_preferences: ^2.0.15
 
-dev_dependencies: 
-  flutter_lints: 2.0.1
+dev_dependencies:
   build_runner: ^2.2.0
-  mocktail: ^0.3.0
-  mockito: ^5.3.0
-  flutter_test: 
+  flutter_lints: 2.0.1
+  flutter_test:
     sdk: flutter
+  mockito: ^5.3.0
+  mocktail: ^0.3.0
 
-flutter: 
+flutter:
   uses-material-design: true
 
   assets:
@@ -55,4 +57,3 @@ flutter:
           weight: 300
         - asset: assets/fonts/Roboto-Thin.ttf
           weight: 100
-
