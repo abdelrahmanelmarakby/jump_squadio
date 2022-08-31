@@ -2,6 +2,10 @@ import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:jump_squadio/app/modules/home/views/home_view.dart';
+import 'package:jump_squadio/app/routes/app_pages.dart';
+import 'package:jump_squadio/core/services/shared_pref.dart';
+import 'package:jump_squadio/core/values/localization/local_keys.dart';
 import 'package:scratcher/scratcher.dart';
 
 import '../controllers/login_controller.dart';
@@ -13,58 +17,69 @@ class LoginView extends GetView<LoginController> {
     return Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
-            controller.user = await controller.getRandomData();
+            controller.Login(controller.name.text, controller.pass.text);
           },
-          child: const Icon(Icons.shuffle_on),
+          child: const Icon(Icons.login),
         ),
-        body: GetBuilder<LoginController>(
-          builder: (controller) {
-            if (controller.isLoadingUsers) {
-              return const Center(child: Text("Guess the winner"));
-            } else if (controller.user == null) {
-              return const Center(
-                  child: Text("Click the button to get the winner"));
-            } else {
-              return Center(
-                child: ConfettiWidget(
-                  confettiController: controller.controllerBottomCenter,
-                  numberOfParticles: 100,
-                  maxBlastForce: 100,
-                  minBlastForce: 60,
-                  blastDirectionality: BlastDirectionality
-                      .explosive, // don't specify a direction, blast randomly
-                  shouldLoop:
-                      true, // start again as soon as the animation is finished
-                  colors: const [
-                    Colors.green,
-                    Colors.blue,
-                    Colors.pink,
-                    Colors.orange,
-                    Colors.purple
-                  ], // manually specify the colors to be used
-                  createParticlePath:
-                      controller.drawStar, // define a custom sha
-                  child: Scratcher(
-                    brushSize: 30,
-                    threshold: 50,
-                    color: Colors.red,
-                    onChange: (value) => print("Scratch progress: $value%"),
-                    onThreshold: () {
-                      controller.controllerBottomCenter.play();
-                      controller.controllerCenter.play();
-                      controller.controllerCenterLeft.play();
-                      controller.controllerCenterRight.play();
-                      controller.controllerTopCenter.play();
-                    },
-                    child: Container(
-                      color: Colors.blue,
-                      child: Text(controller.user?.name ?? ""),
-                    ),
-                  ),
+        body: GetBuilder<LoginController>(builder: (controller) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Spacer(
+                  flex: 5,
                 ),
-              );
-            }
-          },
-        ));
+                Column(
+                  children: [
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        LocalKeys.kName.tr,
+                      ),
+                    ),
+                    TextFormField(
+                      controller: controller.name,
+                    ),
+                  ],
+                ),
+                Spacer(
+                  flex: 1,
+                ),
+                Column(
+                  children: [
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Password",
+                      ),
+                    ),
+                    TextFormField(
+                      controller: controller.pass,
+                      obscureText: true,
+                    ),
+                  ],
+                ),
+                const Spacer(
+                  flex: 1,
+                ),
+                TextButton(
+                    onPressed: () async {
+                      bool isLogged = await controller.Login(
+                          controller.name.text, controller.pass.text);
+                      print(isLogged);
+                      if (!isLogged) {}
+                    },
+                    child: Text(LocalKeys.kLogin.tr)),
+                const Spacer(
+                  flex: 5,
+                )
+              ],
+            ),
+          );
+        })); //)
   }
 }
